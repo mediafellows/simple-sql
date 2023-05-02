@@ -54,13 +54,18 @@ module Simple::SQL::Config
 
   def load_activerecord_base_configuration(path:, env:)
     require "yaml"
-    opts = {}
-    opts[:aliases] = true if Psych::VERSION >= '4.0'
-    database_config = YAML.load_file(path, **opts)
+    database_config = YAML.safe_load(templated_config_file(path), aliases: true)
+
     env ||= ENV["RAILS_ENV"] || ENV["RACK_ENV"] || "development"
 
     database_config[env] ||
       database_config["defaults"] ||
       raise("Invalid or missing database configuration in #{path} for #{env.inspect} environment")
+  end
+
+  # Allows for ERB templated database.yml files
+  def templated_config_file(path)
+    require "erb"
+    ERB.new(File.read(path)).result
   end
 end

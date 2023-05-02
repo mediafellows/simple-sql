@@ -1,0 +1,31 @@
+# Only for test use, to test if ERB templating is done correctly by simple-sql
+
+defaults: &defaults
+  adapter:    postgresql
+  host:       <%= DatabaseConfig.host %>
+  username:   <%= DatabaseConfig.username %>
+  port:       <%= DatabaseConfig.port %>
+  database:   <%= DatabaseConfig.database %>
+  password:   <%= DatabaseConfig.password %>
+  encoding:   utf8
+  reconnect:  true
+  pool:       2
+  timeout:    600
+
+development:
+  <<: *defaults
+
+presentation:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+integration:
+  <<: *defaults
+
+test:
+  <<: *defaults
