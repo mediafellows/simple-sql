@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple-sql (0.6.3)
+    simple-sql (0.6.4)
       activerecord (>= 5.2.4.5)
       digest-crc (~> 0)
       expectation (~> 1)
