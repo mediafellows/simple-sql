@@ -57,10 +57,7 @@ end
 # -- check, bump, release a new gem version -----------------------------------
 
 Dir.chdir ROOT
-$BASE_BRANCH = ENV['BRANCH'] || 'master'
-
-# ENV["BUNDLE_GEMFILE"] = "#{Dir.getwd}/Gemfile"
-# sys! "bundle install"
+$BASE_BRANCH = ENV['BRANCH'] || 'main'
 
 sys! "git diff --exit-code > /dev/null", error: 'There are unstaged changes in your working directory'
 sys! "git diff --cached --exit-code > /dev/null", error: 'There are staged but uncommitted changes'
@@ -71,24 +68,26 @@ sys! "git pull"
 Version.bump_version
 version = Version.read_version
 
+# Add the version to the Gemfile.lock
+sys! "bundle"
+
+gem_file = "pkg/mfx-notifier-#{version}.gem"
+sys! "mkdir -p pkg"
+sys! "gem build #{GEMSPEC} --output #{gem_file}"
+sys! "gem install #{gem_file}"
+
 sys! "git add VERSION"
+sys! "git add Gemfile.lock"
 sys! "git commit -m \"bump gem to v#{version}\""
 sys! "git tag -a v#{version} -m \"Tag #{version}\""
 
 sys! "git push origin #{$BASE_BRANCH}"
 sys! 'git push --tags --force'
 
-sys! "gem build #{GEMSPEC}"
-sys! "mkdir -p pkg"
-sys! "mv *.gem pkg"
-
-gem_file = Dir.glob('pkg/*.gem').sort.last
-
-sys! "gem install #{gem_file}"
-sys! "gem push #{gem_file}"
+sys! "gem push --key github --host https://rubygems.pkg.github.com/mediafellows #{gem_file}"
 
 STDERR.puts <<-MSG
 ================================================================================
 Thank you for releasing a new gem version. You made my day.
 ================================================================================
-    MSG
+MSG
