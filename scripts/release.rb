@@ -57,7 +57,7 @@ end
 # -- check, bump, release a new gem version -----------------------------------
 
 Dir.chdir ROOT
-$BASE_BRANCH = ENV['BRANCH'] || 'main'
+$BASE_BRANCH = ENV['BRANCH'] || 'master'
 
 sys! "git diff --exit-code > /dev/null", error: 'There are unstaged changes in your working directory'
 sys! "git diff --cached --exit-code > /dev/null", error: 'There are staged but uncommitted changes'
