@@ -4,6 +4,7 @@ pkg
 log/*.log
 .rspec.data
 .rake_t_cache
+.rake_tasks~
 .rspec.status
 .DS_Store
 tmp
