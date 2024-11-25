@@ -1,3 +1,5 @@
+[![Ruby tests](https://github.com/mediafellows/simple-sql/actions/workflows/ruby.yml/badge.svg)](https://github.com/mediafellows/simple-sql/actions/workflows/ruby.yml)
+
 # simple-sql
 
 The simple-sql gem defines a module `Simple::SQL`, which you can use to execute SQL statements on a Postgresql database. Care has been taken to provide the simplest interface we could come up with.

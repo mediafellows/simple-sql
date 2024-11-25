@@ -54,7 +54,7 @@ jobs:
       PG_PORT: 5432
     steps:
       - name: Clone repo into CI env
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install Ruby and bundler and bundle project
         uses: ruby/setup-ruby@v1
