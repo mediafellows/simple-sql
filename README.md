@@ -6,8 +6,6 @@ However, apart from providing a simple interface `simple-sql` also provides a hu
 
 **Note:** Databases other than Postgresql are not supported, and there are no plans to do so.
 
-<!-- TOC -->
-
 ## Installation
 
 The gem is available on rubygems as `simple-sql`.
