@@ -5,6 +5,7 @@ PATH
       activerecord (>= 5.2.4.5)
       digest-crc (~> 0)
       expectation (~> 1)
+      ostruct (~> 0.6)
       pg
       pg_array_parser (~> 0, >= 0.0.9)
       simple-immutable (~> 1.0)
@@ -36,6 +37,7 @@ GEM
     json (2.6.3)
     method_source (1.0.0)
     minitest (5.18.0)
+    ostruct (0.6.3)
     parallel (1.23.0)
     parser (3.2.2.0)
       ast (~> 2.4.1)
@@ -101,4 +103,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   2.4.6
+   2.4.22
