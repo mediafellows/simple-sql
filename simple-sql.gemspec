@@ -38,4 +38,6 @@ Gem::Specification.new do |gem|
 
   activerecord_specs = ENV["SIMPLE_SQL_ACTIVERECORD_SPECS"] || ''
   gem.add_dependency 'activerecord', '>= 5.2.4.5', *(activerecord_specs.split(","))
+
+  gem.add_dependency 'ostruct', '~> 0.6'
 end
